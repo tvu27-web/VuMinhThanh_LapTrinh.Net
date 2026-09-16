@@ -1,0 +1,54 @@
+using System.Collections.Generic;
+
+namespace orderapp_form
+{
+    public class Class1
+    {
+        public static void KhoiTao(Form1 f)
+        {
+            f.lstMenu.Items.Add("Hamburger: 50k");
+            f.lstMenu.Items.Add("Pizza: 120k");
+            f.lstMenu.Items.Add("Gà Rán: 35k");
+            f.lstMenu.Items.Add("Pepsi: 15k");
+
+            f.lblTotal.Text = "Tổng tiền: 0k";
+        }
+
+        public static void ThemMon(Form1 f)
+        {
+            if (f.lstMenu.SelectedItem != null)
+            {
+                f.lstSelected.Items.Add(f.lstMenu.SelectedItem);
+                TinhTong(f);
+            }
+        }
+
+        public static void XoaMon(Form1 f)
+        {
+            if (f.lstSelected.SelectedItem != null)
+            {
+                f.lstSelected.Items.Remove(f.lstSelected.SelectedItem);
+                TinhTong(f);
+            }
+        }
+
+        public static void TinhTong(Form1 f)
+        {
+            int tong = 0;
+
+            foreach (string mon in f.lstSelected.Items)
+            {
+                if (mon.Contains("50k"))
+                    tong += 50;
+                else if (mon.Contains("120k"))
+                    tong += 120;
+                else if (mon.Contains("35k"))
+                    tong += 35;
+                else if (mon.Contains("15k"))
+                    tong += 15;
+            }
+
+            f.lblTotal.Text = "Tổng tiền: " + tong + "k";
+        }
+    }
+}
