@@ -1,0 +1,31 @@
+using System.Windows.Forms;
+
+namespace responsive_maximize
+{
+    internal class Class1
+    {
+        public static void Them(ListBox lst, string ten, string sdt, string diachi)
+        {
+            if (ten != "")
+            {
+                lst.Items.Add(ten + " - " + sdt + " - " + diachi);
+            }
+        }
+
+        public static void Sua(ListBox lst, int index, string ten, string sdt, string diachi)
+        {
+            if (index >= 0)
+            {
+                lst.Items[index] = ten + " - " + sdt + " - " + diachi;
+            }
+        }
+
+        public static void Xoa(ListBox lst, int index)
+        {
+            if (index >= 0)
+            {
+                lst.Items.RemoveAt(index);
+            }
+        }
+    }
+}
