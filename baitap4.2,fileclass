@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace register_students
+{
+    public class Class1
+    {
+        public static void KhoiTao(Form1 f)
+        {
+            List<Course> courses = new List<Course>
+            {
+                new Course("Lập trình C#", "CS01"),
+                new Course("Lập trình C++", "CPP01"),
+                new Course("Lập trình Python", "PY01"),
+                new Course("Lập trình Java", "JAVA01")
+            };
+
+            f.cboCourse.DataSource = courses;
+            f.cboCourse.DisplayMember = "Name";
+            f.cboCourse.ValueMember = "Code";
+
+            f.mtxtPhone.Mask = "(000) 000-0000";
+            f.dtpBirthDate.Format = DateTimePickerFormat.Short;
+        }
+
+        public static void DangKy(Form1 f)
+        {
+            string gioiTinh = "";
+
+            if (f.radMale.Checked)
+                gioiTinh = "Nam";
+            else if (f.radFemale.Checked)
+                gioiTinh = "Nữ";
+
+            string monHoc = "";
+
+            if (f.chkCSharp.Checked)
+                monHoc += "C#, ";
+
+            if (f.chkCpp.Checked)
+                monHoc += "C++, ";
+
+            if (f.chkPython.Checked)
+                monHoc += "Python, ";
+
+            if (monHoc == "")
+                monHoc = "Không chọn";
+            else
+                monHoc = monHoc.Substring(0, monHoc.Length - 2);
+
+            string thongTin =
+                "THÔNG TIN ĐĂNG KÝ\n\n" +
+                "Họ tên: " + f.txtName.Text + "\n" +
+                "Số điện thoại: " + f.mtxtPhone.Text + "\n" +
+                "Ngày sinh: " + f.dtpBirthDate.Value.ToString("dd/MM/yyyy") + "\n" +
+                "Khóa học: " + f.cboCourse.Text + "\n" +
+                "Mã khóa học: " + f.cboCourse.SelectedValue + "\n" +
+                "Giới tính: " + gioiTinh + "\n" +
+                "Môn học: " + monHoc;
+
+            MessageBox.Show(
+                thongTin,
+                "Thông tin đăng ký",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
+    }
+
+    public class Course
+    {
+        public string Name { get; set; }
+        public string Code { get; set; }
+
+        public Course(string name, string code)
+        {
+            Name = name;
+            Code = code;
+        }
+    }
+}
