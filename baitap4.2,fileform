@@ -1,0 +1,25 @@
+using System;
+using System.Windows.Forms;
+
+
+namespace register_students
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            Class1.KhoiTao(this);
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            Class1.DangKy(this);
+        }
+
+        private void dtpBirthDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
