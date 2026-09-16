@@ -1,0 +1,54 @@
+using System;
+using System.Windows.Forms;
+
+namespace responsive_maximize
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            Class1.Them(
+                lstData,
+                txtName.Text,
+                txtPhone.Text,
+                txtAddress.Text
+            );
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            Class1.Sua(
+                lstData,
+                lstData.SelectedIndex,
+                txtName.Text,
+                txtPhone.Text,
+                txtAddress.Text
+            );
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            Class1.Xoa(
+                lstData,
+                lstData.SelectedIndex
+            );
+        }
+
+        private void LstData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstData.SelectedIndex >= 0)
+            {
+                string[] data = lstData.SelectedItem.ToString().Split(" - ");
+
+                txtName.Text = data[0];
+                txtPhone.Text = data.Length > 1 ? data[1] : "";
+                txtAddress.Text = data.Length > 2 ? data[2] : "";
+            }
+        }
+    }
+}
